@@ -1,2 +1,2 @@
 # canvasUI
-Canvas based UI
+HTML Canvas based UI
