@@ -1,6 +1,9 @@
 class {
     static get inherits() { return ["CanvasUI.Controls.Control"]; }
-    static get manifest(){return [new Mrbr.System.ManifestEntry(Mrbr.System.ManifestEntry.FileTypes.Class, "CanvasUI.Controls.WindowControl")]}
+    static get manifest(){return [
+        new Mrbr.System.ManifestEntry(Mrbr.System.ManifestEntry.FileTypes.Class, "CanvasUI.Controls.WindowControl"),
+        new Mrbr.System.ManifestEntry(Mrbr.System.ManifestEntry.FileTypes.Class, "Mrbr.Collections.Dictionary")
+    ]}
     constructor(...args) {
         var self = this;
         self.base(...args);
@@ -19,11 +22,22 @@ class {
         self.animate();
         this._workingArea = "";
         this._clientArea = "";
+        this._displayList = new Mrbr.Collections.Dictionary();
         self.initialiseComponent();
+
     }
     initialiseComponent() {
         var self = this;
         self.window.on(CanvasUI.Controls.WindowControl.eventNames.resize, self.window_resize.bind(self));
+    }
+    get displayList(){return this._displayList;}
+    set displayList(value){
+        if(value.isTypeOf(Mrbr.Collection.Dictionary)){
+            this._displayList = value;
+        }
+        else{
+            throw `Invalid value for displayList`
+        }
     }
     get transparent(){return this._transparent;}
     set transparent(value){this._transparent = value;}
