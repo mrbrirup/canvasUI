@@ -3,8 +3,8 @@ class {
     static get using() { return ["Mrbr.Geometry.Size"]; }
     constructor(...args) {
         this.base(...args);
-        this._clientSize = new Mrbr.Geometry.Size(this.width, this.height);
-        this._clientArea = new Mrbr.Geometry.Rectangle(this.x, this.y, this.width, this.height);
+        this._clientSize = new Mrbr.Geometry.Size(...args);
+        this._clientArea = new Mrbr.Geometry.Rectangle(...args);
     }
     get clientSize() {
         return this._clientSize;

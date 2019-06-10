@@ -15,7 +15,7 @@ class {
     dispose() { var self = this; window.removeEventListener('resize', self.window_resize.bind(self)); }
     static get width() { return window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth; }
     static get height() { return window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight; }
-    static get size() { return { width: this.width, height: this.height }; }
+    static get size() { return { width: CanvasUI.Controls.WindowControl.width, height: CanvasUI.Controls.WindowControl.height }; }
 
     window_resize(event) {
         var ctrlWin = CanvasUI.Controls.WindowControl, self = this;
