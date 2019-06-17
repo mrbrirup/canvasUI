@@ -1,20 +1,22 @@
 class {
     static get inherits() { return ["CanvasUI.Controls.Control"]; }
-    static get manifest(){return [
-        new Mrbr.System.ManifestEntry(Mrbr.System.ManifestEntry.FileTypes.Class, "CanvasUI.Controls.WindowControl"),
-        new Mrbr.System.ManifestEntry(Mrbr.System.ManifestEntry.FileTypes.Class, "Mrbr.Collections.Dictionary")
-    ]}
+    static get manifest() {
+        return [
+            new Mrbr.System.ManifestEntry(Mrbr.System.ManifestEntry.FileTypes.Class, "CanvasUI.Controls.WindowControl"),
+            new Mrbr.System.ManifestEntry(Mrbr.System.ManifestEntry.FileTypes.Class, "Mrbr.Collections.Dictionary")
+        ]
+    }
     constructor(...args) {
         var self = this;
         self.base(...args);
         self.window = new CanvasUI.Controls.WindowControl();
-        self._config = args[0].config || {};        
-        self._pixi = args[0].pixi || {};        
+        self._config = args[0].config || {};
+        self._pixi = args[0].pixi || {};
         self._transparent = (self._pixi.transparent === true);
         self._backgroundColour = self._pixi.backgroundColour !== undefined ? self.pixi.backgroundColour : 0x000000;
-        self._app = new PIXI.Application({width:self.width,height: self.height, backgroundColor: self.backgroundColour, transparent:self.transparent});           
+        self._app = new PIXI.Application({ width: self.width, height: self.height, backgroundColor: self.backgroundColour, transparent: self.transparent });
         //self._app = new PIXI.Application({width:800,height: 800, backgroundColor: self.backgroundColour, transparent:self.transparent});           
-        document.body.appendChild(self._app.view);        
+        document.body.appendChild(self._app.view);
         // self.renderer = self.app.renderer;
         // self.desktopStage = new PIXI.Container();
         // self.desktopStage.interactive = true;
@@ -31,19 +33,19 @@ class {
         var self = this;
         self.window.on(CanvasUI.Controls.WindowControl.eventNames.resize, self.window_resize.bind(self));
     }
-    get displayList(){return this._displayList;}
-    set displayList(value){
-        if(value.isTypeOf(Mrbr.Collection.Dictionary)){
+    get displayList() { return this._displayList; }
+    set displayList(value) {
+        if (value.isTypeOf(Mrbr.Collection.Dictionary)) {
             this._displayList = value;
         }
-        else{
+        else {
             throw `Invalid value for displayList`
         }
     }
-    get transparent(){return this._transparent;}
-    set transparent(value){this._transparent = value;}
-    get pixi(){return this._pixi;}
-    set pixi(value){this._pixi = value;}
+    get transparent() { return this._transparent; }
+    set transparent(value) { this._transparent = value; }
+    get pixi() { return this._pixi; }
+    set pixi(value) { this._pixi = value; }
     get app() { return this._app; }
     set app(value) { this._app = value; }
     get workingArea() { return this._workingArea; }
