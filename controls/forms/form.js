@@ -3,8 +3,7 @@ class {
     static get using() { return []; }
     static get manifest() { return []; }
     static get overrides() { return [] }
-    constructor(hello, ...args) {
-        console.log(hello)
+    constructor(...args) {
         this.base(...args)
         this._displayObject = null;
     }
